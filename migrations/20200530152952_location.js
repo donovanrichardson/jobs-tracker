@@ -1,9 +1,8 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable("location", table =>{
-      table.increments("location_id");
-      table.string("location_name", 255).notNullable();
-      table.integer("parent").notNullable().unsigned().references("location_id");
+      table.string("location_id", 255).primary();
+      table.string("parent", 255).notNullable().references("location_id");
   })
 };
 
