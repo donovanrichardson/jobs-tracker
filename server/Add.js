@@ -21,4 +21,12 @@ const addJob = j =>{
     })
 }
 
-module.exports = {addLoc, addJob}
+// switching from next to await... such good practice....
+
+const addStat = async s => {
+    let stat = await knex('status').insert(s,'*')
+    // console.log(stat)
+    return stat[0]
+}
+
+module.exports = {addLoc, addJob, addStat}
