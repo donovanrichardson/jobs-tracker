@@ -20,8 +20,8 @@ const grabDesc = (html, css) =>{
     return htt.fromString(res);
 }
 
-grabIndeed = (html, url) =>{
-    let res = {
+const grabIndeed = (html, url) =>{
+    return {
         job_name: grab(html, ".icl-u-xs-mb--xs"),
         location_id: grab(html, ".jobsearch-InlineCompanyRating > div:nth-child(3)"),
         url: url,
@@ -29,5 +29,6 @@ grabIndeed = (html, url) =>{
         company: grab(html, "div.icl-u-lg-mr--sm:nth-child(1)")
     };
 
-
 }
+
+module.exports= {grabIndeed};

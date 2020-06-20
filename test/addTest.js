@@ -99,20 +99,16 @@ describe('add', () =>{
             })
         })
         it('auto-adds a new location in a job with status', done=>{
-            Add.addLoc({location_id:'myloc', parent:'myloc'}).then(r=>{
-                assert.equal('myloc', r[0].location_id)
-                // console.log(`is myloc ${r[0].location_id}`)
-            }).then(()=>{
-                return Add.addJob({job_name:"thejob", location_id:"myloc",url:"job.com",desc:"descriptive",company:"the job company"})
-            }).then(j =>{
+            Add.addJob({job_name:"thejob", location_id:"myloc",url:"job.com",desc:"descriptive",company:"the job company"})
+            .then(j =>{
                 let onejob = j
                 assert.equal(j.job_name, 'thejob')
                 assert.equal(j.desc, 'descriptive')
                 assert.equal('myloc', j.location_id)
-                console.log(onejob)
+                // console.log(onejob)
                 return Read.readOneJob(onejob.job_id);
             }).then(jobselect =>{
-                console.log(jobselect)
+                // console.log(jobselect)
                 assert.equal(jobselect.status_type, 1)//change to 1 
                 done()
             }).catch(e =>{
