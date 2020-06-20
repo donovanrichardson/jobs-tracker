@@ -1,5 +1,6 @@
 const config = require('../knexfile')["development"];
 var knex = require('knex')(config);
+const Read = require("./Read")
 
 //adds a single location
 const addLoc = l =>{
@@ -16,10 +17,28 @@ const addLoc = l =>{
 // adds a singlle job
 const addJob = j =>{
     let thejob = j;
+    // console.log(thejob)
     thejob.desc = thejob.desc || '';
     return knex('job').insert(thejob, '*').then(r =>{
-        // console.log(r)
+        console.log(r)
+        // console.log("whet")
+        console.log(`job in addjob is ${r[0].job_id}`)
         return r;
+    }).then(job=>{
+        let thisJob = job[0] //equivalent to thejob
+        // console.log(thisJob)
+        let newStatus = 
+        {   job_id:thisJob.job_id,
+            status_type: 1
+        }
+        // console.log(newStatus)
+        return addStat(newStatus)//the status is added
+    }).then(s=>{
+        console.log(`jobid in add ${s.job_id}`)
+        return Read.readOneJob(s.job_id)
+    }).then(statjob=>{
+        console.log(statjob)
+        return statjob; //the status id etc is returned
     }).catch(e=>{
         if(e.code == '23503'){
             addLoc({location_id:j.location_id}).then(()=>{

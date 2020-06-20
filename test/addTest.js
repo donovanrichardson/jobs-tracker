@@ -2,6 +2,7 @@ const assert = require('chai').assert;
 const Add = require('../server/Add');
 const config = require('../knexfile')["development"];
 var knex = require('knex')(config);
+const Read = require('../server/Read');
 
 const addingPlace = async p =>{
 
@@ -72,8 +73,8 @@ describe('add', () =>{
             }).then(()=>{
                 return Add.addJob({job_name:"thejob", location_id:"jobland",url:"job.com",desc:"descriptive",company:"the job company"})
             }).then(r=>{
-                assert.equal(r[0].job_name, 'thejob')
-                assert.equal(r[0].desc, 'descriptive')
+                assert.equal(r.job_name, 'thejob')
+                assert.equal(r.desc, 'descriptive')
                 done()
             }).catch(e =>{
                 done(e)
@@ -87,8 +88,8 @@ describe('add', () =>{
             }).then(()=>{
                 return Add.addJob({job_name:"thejob", location_id:"jobasia",url:"job.com",company:"the job company"})
             }).then(r=>{
-                assert.equal(r[0].job_name, 'thejob')
-                assert.equal(r[0].desc, '')
+                assert.equal(r.job_name, 'thejob')
+                assert.equal(r.desc, '')
                 done()
             }).catch(e =>{
                 done(e)
@@ -97,15 +98,28 @@ describe('add', () =>{
                 // .then(rows => console.log(rows))
             })
         })
-        it('auto-adds a new location in a job',done=>{
-            Add.addJob({job_name:"thejob", location_id:"herculaneum",url:"job.com",company:"the job company"}).then(j=>{
-                console.log(j)
+        it('auto-adds a new location in a job with status', done=>{
+            Add.addLoc({location_id:'myloc', parent:'myloc'}).then(r=>{
+                assert.equal('myloc', r[0].location_id)
+                // console.log(`is myloc ${r[0].location_id}`)
+            }).then(()=>{
+                return Add.addJob({job_name:"thejob", location_id:"myloc",url:"job.com",desc:"descriptive",company:"the job company"})
+            }).then(j =>{
+                let onejob = j
+                assert.equal(j.job_name, 'thejob')
+                assert.equal(j.desc, 'descriptive')
+                assert.equal('myloc', j.location_id)
+                console.log(onejob)
+                return Read.readOneJob(onejob.job_id);
+            }).then(jobselect =>{
+                console.log(jobselect)
+                assert.equal(jobselect.status_type, 1)//change to 1 
                 done()
-            }).catch(e=>{
-                console.error(e)
+            }).catch(e =>{
                 done(e)
-            }).finally(async()=>{
-                await knex('location').del().where({location_id:"herculaneum"})
+            }).finally(async () =>{
+               await knex('location').del().where({location_id:"myloc"})
+                // .then(rows => console.log(rows))
             })
         })
     })
@@ -140,6 +154,7 @@ describe('add', () =>{
                 assert.equal(s.status_type, 14)
                 return Add.addStat({job_id:s.job_id,status_type:'20'} )
             }).then(s=>{
+                // console.log(s)
                 assert.equal(s.status_type, 20)
                 return Add.addStat({job_id:s.job_id,status_type:'222'} )
             }).catch(e=>{
@@ -152,6 +167,9 @@ describe('add', () =>{
             // console.log(stattus)
             // await knex('location').del().where({location_id:"seoul"});
         })
+        // it('adds job with default status', done =>{
+            //done above
+        // })
     })
 })
 
