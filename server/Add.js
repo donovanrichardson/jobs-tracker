@@ -49,7 +49,7 @@ const addJob = j =>{
 const addStat = async s => {
     let stat = await knex('status').insert(s,'*')
     // console.log(stat)
-    return stat[0]
+    return await Read.readOneJob(s.job_id)
 }
 
 module.exports = {addLoc, addJob, addStat}
