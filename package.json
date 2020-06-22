@@ -1,11 +1,12 @@
 {
   "name": "jobs-tracker",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
+    "debug": "~2.6.9",
     "express": "^4.17.1",
     "html-to-text": "^5.1.1",
     "knex": "^0.21.1",
@@ -15,7 +16,8 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node ./bin/www"
   },
   "author": "Donovan Richardson",
   "license": "ISC",
