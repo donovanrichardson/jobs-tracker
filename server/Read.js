@@ -2,7 +2,7 @@ const config = require('../knexfile')["development"];
 var knex = require('knex')(config);
 
 const readJobs = () =>{
-    return knex.raw('select job.*, status.* from job left join status on job.job_id = status.job_id right join (select job_id, max(as_of) as as_of from status group by job_id) as s2 on status.job_id = s2.job_id and status.as_of = s2.as_of order by status.as_of desc').then(j =>{
+    return knex.raw('select job.*, status.*, status_type.name as status_name, status_type.desc from job left join status on job.job_id = status.job_id left join status_type on status.status_type = status_type.type_id right join (select job_id, max(as_of) as as_of from status group by job_id) as s2 on status.job_id = s2.job_id and status.as_of = s2.as_of order by status.as_of desc').then(j =>{
         return j.rows;
     })
 }
