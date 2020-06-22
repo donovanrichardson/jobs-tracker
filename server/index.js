@@ -12,6 +12,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 app.use(bodyParser.json());
 app.use(cors())
 
+// imports job listing to DB based on url given in req.body.url
 app.post('/import', (req, res) =>{
     // console.log(req.body.url)
     axios.get(req.body.url).then(p =>{
@@ -26,6 +27,7 @@ app.post('/import', (req, res) =>{
     // res.send(req);
 })
 
+//posts a status update for a job listing based on request parameters
 app.post('/status', (req, res) =>{
     return Add.addStat({job_id: req.query.id, status_type:req.query.status}).then(jobstat=>{
         res.send(jobstat)
@@ -33,6 +35,7 @@ app.post('/status', (req, res) =>{
     // res.send(req);
 })
 
+//gets all jobs in DB.
 app.get('/jobs', (req, res) =>{
     return Read.readJobs().then(jobs=>{
         res.send(jobs)

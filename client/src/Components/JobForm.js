@@ -4,6 +4,7 @@ function JobForm({submission}) {
 
     const [url, setUrl] = useState("");
 
+    //inserts job provided by URL into database, refreshes the page to show any new jobs
     const onSubmitForm = async(e) => {
         e.preventDefault() //prevents referesh
         try {
@@ -13,7 +14,7 @@ function JobForm({submission}) {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             });
-            window.location = "/";
+            window.location = "/"; //perhaps use submission function which merely changes state of App.js, hopefully refreshing the table.
         } catch (err) {
             console.error(err.message)
         }

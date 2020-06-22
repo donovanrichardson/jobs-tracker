@@ -2,7 +2,7 @@ const config = require('../knexfile')["development"];
 var knex = require('knex')(config);
 const Read = require("./Read")
 
-//adds a single location
+//adds a single location to DB
 const addLoc = l =>{
     // console.log(l.location_id, l.parent);
    return knex('location').insert({location_id:l.location_id, parent:(l.parent || l.location_id)}, '*').then(r=>{
@@ -14,7 +14,7 @@ const addLoc = l =>{
    })
 }
 
-// adds a singlle job
+// adds a single job to DB
 const addJob = j =>{
     let thejob = j;
     // console.log(thejob)
@@ -46,6 +46,7 @@ const addJob = j =>{
 
 // switching from next to await... such good practice....
 
+//adds a status update for a job into the DB
 const addStat = async s => {
     let stat = await knex('status').insert(s,'*')
     // console.log(stat)

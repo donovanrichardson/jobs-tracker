@@ -7,19 +7,21 @@ const htt = require('html-to-text')
 
 
 
-
+//gets text based on an html object and a css selector
 const grab = (html, css) =>{
     let res = cheerio.load(html)(css).text()
     return res;
     
 }
 
+//gets text with line breaks for a job description based on html object and css selector
 const grabDesc = (html, css) =>{
     let elements = cheerio.load(html)(css)
     let res = elements.html()
     return htt.fromString(res);
 }
 
+//gets job details from an Indeed job listing
 const grabIndeed = (html, url) =>{
     return {
         job_name: grab(html, ".icl-u-xs-mb--xs"),

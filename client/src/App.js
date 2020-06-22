@@ -15,6 +15,7 @@ function App() {
 
   const [data, setData] = useState([]);
   
+  //the fields that will appear in the table.
   const fields = [
     { name: 'job_name', displayName: "Title", inputFilterable: true, sortable: true },
     { name: 'company', displayName: "Company", inputFilterable: true, sortable: true },
@@ -23,10 +24,12 @@ function App() {
     { name: 'status_name', displayName: "Job Status", inputFilterable: true, exactFilterable: true, sortable: true },
   ];
 
+  //returns a job title that links to the job listing
   const Job = ({name}) =>{
     return <a href={name.url}>{name.name}</a>
   }
 
+  //retrieves job information from DB.
   const getData = async function() {
     try {
 
@@ -49,6 +52,7 @@ useEffect(() => {
   getData();
 }, []);
 
+//returns a form for adding jobs and a table of all jobs.
   return (
     <div className="App">
       <JobForm submission={getData}></JobForm>
