@@ -8,7 +8,7 @@ brew install postgresql
 
 ### start the back end server
  ```
- git clone <URL>
+ git clone https://github.com/donovanrichardson/jobs-tracker.git
  cd jobs-tracker
  npm install
  ...
