@@ -13,7 +13,7 @@ brew install postgresql
  npm install
  ```
  
- ### initialize the database with knex start the back end server
+ ### initialize the database with knex and start the back end server
  ```
  knex migrate:latest
  ...
