@@ -11,13 +11,16 @@ brew install postgresql
 
 ## How to use
 
-### start the back end server
+### clone this repo
  ```
  git clone https://github.com/donovanrichardson/jobs-tracker.git
  cd jobs-tracker
  npm install
+ ```
+ 
+ ### initialize the database with knex and start the back end server
+ ```
  knex migrate:latest
- ...
  npm start
  ```
 
