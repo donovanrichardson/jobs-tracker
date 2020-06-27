@@ -2,6 +2,7 @@
   "name": "jobs-tracker",
   "version": "0.1.0",
   "dependencies": {
+    "@agtabesh/keyword-extractor": "^1.1.1",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",

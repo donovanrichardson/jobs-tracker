@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState, Component} from 'react'
 import logo from './logo.svg';
 import './App.css';
+import 'react-filterable-table/dist/app.css';
 const FilterableTable = require('react-filterable-table');
 const JobForm = require('./Components/JobForm').default;  //.default? what?
 const StatusForm = require('./Components/StatusForm').default;
@@ -21,9 +22,10 @@ function App() {
     { name: 'job_name', displayName: "Title", inputFilterable: true, sortable: true },
     { name: 'company', displayName: "Company", inputFilterable: true, sortable: true },
     { name: 'location_id', displayName: "Location", inputFilterable: true, sortable: true },
-    // { name: 'keywords', displayName: "Keywords", inputFilterable: true, sortable: true },
+    { name: 'keywords', displayName: "Keywords", inputFilterable: true, sortable: true },
     { name: 'status_name', displayName: "Job Status", inputFilterable: true, exactFilterable: true, sortable: true },
     { name: 'status_submit', displayName: "", inputFilterable: false, exactFilterable: false, sortable: false },
+    
   ];
 
   //returns a job title that links to the job listing
@@ -51,6 +53,17 @@ function App() {
     }
 }
 
+const analyse = async(e) => {
+  e.preventDefault() //prevents referesh
+  try {
+      const response = await axios.put('http://localhost:9000/analyse')
+      window.location = "/"; 
+  } catch (err) {
+      console.error(err.message)
+  }
+}
+
+
 useEffect(() => {
   getData();
 }, []);
@@ -59,6 +72,7 @@ useEffect(() => {
   return (
     <div className="App">
       <h1>Job Tracker</h1>
+      <h4>Insert job url below</h4>
       <JobForm submission={getData}></JobForm>
       <FilterableTable
       namespace="People"
@@ -68,7 +82,7 @@ useEffect(() => {
       noRecordsMessage="There are no jobs to display"
       noFilteredRecordsMessage="No jobs match your filters!"
       />
-      <button onClick={getData}>Refresh</button>
+      <button onClick={analyse}>Refresh</button>
     </div>
   );
 }

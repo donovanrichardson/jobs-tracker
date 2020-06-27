@@ -7,6 +7,7 @@ const axios = require('axios').default;
 const Import = require('./Import')
 const Add = require('./Add')
 const Read = require('./Read')
+const Tfidf = require('./Tfidf')
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.use(bodyParser.json());
@@ -39,6 +40,12 @@ app.post('/status', (req, res) =>{
 app.get('/jobs', (req, res) =>{
     return Read.readJobs().then(jobs=>{
         res.send(jobs)
+    })
+})
+
+app.put('/analyse', (req, res) =>{
+    return Tfidf.update().then(kwds=>{
+        res.send(kwds)
     })
 })
 
