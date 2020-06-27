@@ -2,14 +2,15 @@
 
 Want to contribute? See [CONTRIBUTING.MD](CONTRIBUTING.MD)
 
+## How to use
+
+### Prerequisites
 Make sure you have [Node.js](https://nodejs.org/en/) installed.
 
 This job tracker also requires that PostgreSQL is installed on your computer. Download [here](https://www.postgresql.org/download/) or, if you have installed brew, use the brew formula below:
 ```
 brew install postgresql
 ```
-
-## How to use
 
 ### clone this repo
  ```
