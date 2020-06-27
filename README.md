@@ -2,7 +2,7 @@
 
 This is a job tracker web app that can run on your local machine. It takes job listing information from the Internet, and allows you to record your progress in a job application on your local PostgreSQL database.
 
-Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.MD)
+Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## How to use
 
