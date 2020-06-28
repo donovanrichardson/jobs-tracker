@@ -44,15 +44,15 @@ Clone this repo, install dependencies with npm, initialize database with knex
  ### Master the job search
 
  #### Add a job using its Indeed URL
- ![Enter the job's URL using the text box on top, and click "Add" to add the job.](add.gif)
+ ![Enter the job's URL using the text box on top, and click "Add" to add the job.](https://live.staticflickr.com/65535/50054616693_0a97b42277_o.gif)
 
  #### Sort columns
- ![Sort columns by clicking the arrows on their headers](sorting.gif)
+ ![Sort columns by clicking the arrows on their headers](https://live.staticflickr.com/65535/50055196156_397de3f4c1_o.gif)
 
  #### Analyze each job description to find keywords
-![Analyze job descriptions by clicking "Refresh"](analyze.gif)
+![Analyze job descriptions by clicking "Refresh"](https://live.staticflickr.com/65535/50055444202_885d384f55_o.gif)
 
  #### Change the status of a job
- ![Choose a status from the dropdown menu on the right-hand side, then click "Submit"](status.gif)
+ ![Choose a status from the dropdown menu on the right-hand side, then click "Submit"](https://live.staticflickr.com/65535/50054620413_a556868ffc_o.gif)
 
  Happy job searching!
