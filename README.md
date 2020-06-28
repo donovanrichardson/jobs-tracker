@@ -49,8 +49,8 @@ Clone this repo, install dependencies with npm, initialize database with knex
  #### Sort columns
  ![Sort columns by clicking the arrows on their headers](https://live.staticflickr.com/65535/50055196156_397de3f4c1_o.gif)
 
- #### Analyze each job description to find keywords
-![Analyze job descriptions by clicking "Refresh"](https://live.staticflickr.com/65535/50055444202_885d384f55_o.gif)
+ #### Analyse each job description to find keywords
+![Analyse job descriptions by clicking "Refresh"](https://live.staticflickr.com/65535/50055444202_885d384f55_o.gif)
 
  #### Change the status of a job
  ![Choose a status from the dropdown menu on the right-hand side, then click "Submit"](https://live.staticflickr.com/65535/50054620413_a556868ffc_o.gif)
