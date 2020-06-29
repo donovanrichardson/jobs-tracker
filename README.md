@@ -6,12 +6,18 @@ Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## First time setup
 
+### Prerequisites
+
 Make sure you have [Node.js](https://nodejs.org/en/) installed.
 
 This job tracker also requires that PostgreSQL is installed on your computer. Download [here](https://www.postgresql.org/download/) or, if you have installed brew, use the brew formula below:
 ```
 brew install postgresql
 ```
+
+In Postgres, you want to make sure to create a database called `jobs`, and that it can be accessed by the `postgres` as specified in the [knexfile](knexfile.js)
+
+### Initialization
 
 Clone this repo, install dependencies with npm, initialize database with knex
  
