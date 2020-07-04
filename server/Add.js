@@ -1,20 +1,18 @@
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 const Read = require("./Read")
 const Job = require("../mongoose").Job;
 const ObjectId = require('mongoose').Types.ObjectId; 
 
 //adds a single location to DB
-const addLoc = l =>{
-    // console.log(l.location_id, l.parent);
-   return knex('location').insert({location_id:l.location_id, parent:(l.parent || l.location_id)}, '*').then(r=>{
-       return r;
-   }).catch(e=>{
-       if(e.code == '23505'){
-           return false;
-       }else console.error(e);
-   })
-}
+// const addLoc = l =>{
+//     // console.log(l.location_id, l.parent);
+//    return knex('location').insert({location_id:l.location_id, parent:(l.parent || l.location_id)}, '*').then(r=>{
+//        return r;
+//    }).catch(e=>{
+//        if(e.code == '23505'){
+//            return false;
+//        }else console.error(e);
+//    })
+// }
 
 // adds a single job to DB
 const addJob = j =>{
@@ -39,4 +37,4 @@ const addStat = async s => {
     })
 }
 
-module.exports = {addLoc, addJob, addStat}
+module.exports = {addJob, addStat}

@@ -6,8 +6,6 @@ const readFile = util.promisify(fs.readFile);
 const htt = require('html-to-text')
 const Import = require('../server/Import')
 const Add = require('../server/Add')
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 const Tfidf = require('../server/Tfidf')
 
 describe('top terms', ()=>{

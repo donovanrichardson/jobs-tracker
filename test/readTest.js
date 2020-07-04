@@ -2,8 +2,6 @@ const assert = require('chai').assert;
 const addTest = require('./addTest');
 const Read = require('../server/Read');
 const Add = require('../server/Add');
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 
 // const addingStatuses = async (place, final) =>{
 //     return addTest.addingPlace(place).then(job=>{

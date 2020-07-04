@@ -6,8 +6,6 @@ const readFile = util.promisify(fs.readFile);
 const htt = require('html-to-text')
 const Import = require('../server/Import')
 const Add = require('../server/Add')
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 const Job = require("../mongoose").Job;
 
 const grab = (html, css) =>{
@@ -39,10 +37,6 @@ function grab2(html, css) {
       .join(' ');
   }
 
-//   var t = $('html *').contents().map(function() {
-//     return (this.type === 'text') ? $(this).text()+' ' : '';
-// }).get().join('');
-
 describe('import', function(){
     this.timeout(10000);
     var job = ''
@@ -54,25 +48,15 @@ describe('import', function(){
             return Add.addJob(forInsert)
         }).then(inserted =>{
             job = inserted._id
-            
-            // console.log(inserted.job_id)
             done()
-        
-            // console.log(grab(file, "div.icl-u-lg-mr--sm:nth-child(1)"));// returns ADB Companies
-            // console.log(grab(file, ".jobsearch-InlineCompanyRating > div:nth-child(3)"));// returns Dallas, TX
-            // console.log(grab(file, "span.icl-u-xs-mr--xs"));// returns pay
-            // console.log(grab(file, ".icl-u-xs-mb--xs"));// returns title
-            // console.log(grabDesc2(file, "#jobDescriptionText"));// returns description
-            // console.log(grab(file, "#jobDescriptionText > ul:nth-child(43)"));// returns description
+          
         }).catch(e=>{
             console.error(e)
         }).finally(()=>{
-            // console.log(`job is ${job}`)
+            
             Job.deleteMany().where({location:"Dallas, TX"}).exec()
         })
-        // console.log(page)
+        
 
     })
 })
-
-// ^([^/]*?)console

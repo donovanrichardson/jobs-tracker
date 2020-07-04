@@ -45,11 +45,11 @@ let Job = db.model("job", JobSchema)
 //     console.log(added)
 // })
 
-Job.find().then(jobs=>{
-    // console.log(jobs)
-    // console.log(jobs.map(j=>j.status))
-    console.log(jobs.map(j=>j.location))
-})
+// Job.find().then(jobs=>{
+//     // console.log(jobs)
+//     // console.log(jobs.map(j=>j.status))
+//     console.log(jobs.map(j=>j.location))
+// })
 
 
 

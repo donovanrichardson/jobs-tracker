@@ -1,25 +1,21 @@
 # Job Tracker
 
-This is a job tracker web app that can run on your local machine. It takes job listing information from the Internet, and allows you to record your progress in a job application on your local PostgreSQL database.
+This is a job tracker web app that can run on your local machine. It takes job listing information from the Internet, and allows you to record your progress in a job application on your local Mongo database.
 
-Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md)
+Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## First time setup
 
 Make sure you have [Node.js](https://nodejs.org/en/) installed.
 
-This job tracker also requires that PostgreSQL is installed on your computer. Download [here](https://www.postgresql.org/download/) or, if you have installed brew, use the brew formula below:
-```
-brew install postgresql
-```
+This job tracker also requires that MongoDB is installed on your computer. See [here](https://docs.mongodb.com/manual/installation/) for more information on how to download MongoDB.
 
-Clone this repo, install dependencies with npm, initialize database with knex
+Clone this repo and install dependencies with npm
  
  ```
  git clone https://github.com/donovanrichardson/jobs-tracker.git
  cd jobs-tracker
  npm install
- knex migrate:latest
  cd client
  npm install
  ```
@@ -28,7 +24,7 @@ Clone this repo, install dependencies with npm, initialize database with knex
 
  ### Start the servers
 
- Initialize the database with knex and start the back end server from the directory `jobs-tracker`
+Start the back end server from the directory `jobs-tracker`
  ```
  npm start
  ```

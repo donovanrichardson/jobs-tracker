@@ -1,5 +1,3 @@
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 const Read = require("./Read")
 const { EnglishTokenizer, KeywordExtractor } = require("@agtabesh/keyword-extractor");
 const ObjectId = require('mongoose').Types.ObjectId; 

@@ -1,5 +1,3 @@
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 const Job = require("../mongoose").Job;
 
 

@@ -1,7 +1,5 @@
 const assert = require('chai').assert;
 const Add = require('../server/Add');
-const config = require('../knexfile')["development"];
-var knex = require('knex')(config);
 const Read = require('../server/Read');
 const Job = require('../mongoose').Job;
 
@@ -65,16 +63,8 @@ describe('add', () =>{
                 Job.deleteMany({"location":"jobland"}, function(err, resp){console.log(resp)}).exec()
              //either return or await here will ensure that this is executed
             })
-            // job = await addingSeoul().job_id;
-            // stattus = await Add.addStat({job_id:job,status_type:'1'} )
-            // console.log(stattus)
-            // await knex('location').del().where({location_id:"seoul"});
-        })
-        // it('adds job with default status', done =>{
-            //done above
-        // })
 
-// module.exports = {addingPlace}
+        })
     })
 
 })
