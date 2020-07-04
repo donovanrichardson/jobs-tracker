@@ -1,6 +1,6 @@
 {
   "name": "jobs-tracker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
     "@agtabesh/keyword-extractor": "^1.1.1",
     "axios": "^0.19.2",
@@ -11,6 +11,7 @@
     "express": "^4.17.1",
     "html-to-text": "^5.1.1",
     "knex": "^0.21.1",
+    "mongoose": "^5.9.21",
     "neat-csv": "^5.2.0",
     "pg": "^8.2.1"
   },

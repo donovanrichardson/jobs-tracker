@@ -30,7 +30,7 @@ app.post('/import', (req, res) =>{
 
 //posts a status update for a job listing based on request parameters
 app.post('/status', (req, res) =>{
-    return Add.addStat({job_id: req.query.id, status_type:req.query.status}).then(jobstat=>{
+    return Add.addStat({_id: req.query.id, type:req.query.status}).then(jobstat=>{
         res.send(jobstat)
     })
     // res.send(req);

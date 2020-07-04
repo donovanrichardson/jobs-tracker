@@ -24,8 +24,8 @@ const grabDesc = (html, css) =>{
 //gets job details from an Indeed job listing
 const grabIndeed = (html, url) =>{
     return {
-        job_name: grab(html, ".icl-u-xs-mb--xs"),
-        location_id: grab(html, ".jobsearch-InlineCompanyRating > div:nth-child(3)"),
+        name: grab(html, ".icl-u-xs-mb--xs"),
+        location: grab(html, ".jobsearch-InlineCompanyRating > div:nth-child(3)"),
         url: url,
         desc: grabDesc(html, "#jobDescriptionText"),
         company: grab(html, "div.icl-u-lg-mr--sm:nth-child(1)")

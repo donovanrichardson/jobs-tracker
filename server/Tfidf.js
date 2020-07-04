@@ -2,12 +2,14 @@ const config = require('../knexfile')["development"];
 var knex = require('knex')(config);
 const Read = require("./Read")
 const { EnglishTokenizer, KeywordExtractor } = require("@agtabesh/keyword-extractor");
+const ObjectId = require('mongoose').Types.ObjectId; 
+const { Job } = require('../mongoose');
 
 
 //produces keywords from each document.
 
 const update = async ()=>{
-    let jobs = await knex('job').select('job_id', 'desc');
+    let jobs = await Read.readJobs();
     const tokenizer = new EnglishTokenizer()
     const keywordExtractor = new KeywordExtractor()
     keywordExtractor.setTokenizer(tokenizer)
@@ -18,43 +20,23 @@ const update = async ()=>{
         kwd = keywordExtractor.extractKeywords(job.desc, {
             sortByScore: true,
             limit: 5
-            }).map(e=>e[0]).join(' ')
+            }).map(e=>{
+                return {keyword: e[0], score:e[1]}
+            })
             // console.log(kwd)
                     //   console.log(job)
-        return{job_id: job.job_id, keywords:kwd};
+        return{_id: job._id, keywords:kwd};
     })
     // console.log(ud)
     // https://stackoverflow.com/a/48069213
-    return knex.transaction(trx => {
-        const queries = [];
-        ud.forEach(jobupdate => {
-            const query = knex('job')
-                .where('job_id', jobupdate.job_id)
-                .update({
-                    keywords: jobupdate.keywords
-                }, ['job_id', 'keywords'])
-                .transacting(trx); // This makes every update be in the same transaction
-            queries.push(query);
-            // console.log(query.toString())
+    let upds = []
+    ud.forEach(jobupdate => {
+        let _id = new ObjectId(jobupdate._id)
+        let kws = jobupdate.keywords
+        Job.updateOne({_id:_id}, {$set:{keywords:kws}}).then(upd=>{
         });
-    
-        Promise.all(queries) // Once every query is written
-            .then(trx.commit).then(resp=>{
-                // console.log(resp)
-            }) // We try to execute all of them
-            .catch(trx.rollback); // And rollback in case any of them goes wrong
     });
-    
- 
-        
-        
-  
-
-    //     // console.log(ud)
-    //     return ud;        
-    // })
-
-    // console.log(res)
+    return Job.find({},'name keywords').exec();
 }
 
 module.exports = {update}

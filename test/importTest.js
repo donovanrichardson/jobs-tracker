@@ -8,6 +8,7 @@ const Import = require('../server/Import')
 const Add = require('../server/Add')
 const config = require('../knexfile')["development"];
 var knex = require('knex')(config);
+const Job = require("../mongoose").Job;
 
 const grab = (html, css) =>{
     let res = cheerio.load(html)(css).text()
@@ -49,9 +50,10 @@ describe('import', function(){
         let page = readFile('./sample-job.html', 'utf8').then(file=>{
             return Import.grabIndeed(file,"example-url")
         }).then(forInsert =>{
+            console.log(Object.keys(forInsert).join() + "INSERT")
             return Add.addJob(forInsert)
         }).then(inserted =>{
-            job = inserted.job_id
+            job = inserted._id
             
             // console.log(inserted.job_id)
             done()
@@ -65,8 +67,8 @@ describe('import', function(){
         }).catch(e=>{
             console.error(e)
         }).finally(()=>{
-            console.log(`job is ${job}`)
-            return knex('job').del().where({job_id:job})
+            // console.log(`job is ${job}`)
+            Job.deleteMany().where({location:"Dallas, TX"}).exec()
         })
         // console.log(page)
 

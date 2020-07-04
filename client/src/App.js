@@ -21,12 +21,23 @@ function App() {
   const fields = [
     { name: 'job_name', displayName: "Title", inputFilterable: true, sortable: true },
     { name: 'company', displayName: "Company", inputFilterable: true, sortable: true },
-    { name: 'location_id', displayName: "Location", inputFilterable: true, sortable: true },
+    { name: 'location', displayName: "Location", inputFilterable: true, sortable: true },
     { name: 'keywords', displayName: "Keywords", inputFilterable: true, sortable: true },
-    { name: 'status_name', displayName: "Job Status", inputFilterable: true, exactFilterable: true, sortable: true },
+    { name: 'status', displayName: "Job Status", inputFilterable: true, exactFilterable: true, sortable: true },
     { name: 'status_submit', displayName: "", inputFilterable: false, exactFilterable: false, sortable: false },
     
   ];
+
+  // let stats = 
+  // {"1": "listed",
+  // "2": "applying",
+  // "3": "applied",
+  // "4": "first contact",
+  // "5": "second contact",
+  // "6": "third contact",
+  // "12": "rejected",
+  // "14": "no contact",
+  // "20": "expired"}
 
   //returns a job title that links to the job listing
   const Job = ({name}) =>{
@@ -40,8 +51,11 @@ function App() {
       axios.get('http://localhost:9000/jobs').then(r=>{
         // console.log(r)
         r.data.map((j)=>{
-          j.job_name = <Job name={{name: j.job_name, url:j.url}}></Job>;
-          j.status_submit = <StatusForm id={j.job_id} status_type={j.status_type} />;
+          let newstat = j.status[j.status.length - 1].type; /* relies on new status being pushed to the end */
+          j.job_name = <Job name={{name: j.name, url:j.url}}></Job>;
+          j.status = newstat;
+          j.keywords = j.keywords.map(k=>k.keyword).join(' ')
+          j.status_submit = <StatusForm id={j._id} status_type={newstat} />;
         })
         setData(r.data);
       });
@@ -80,7 +94,7 @@ useEffect(() => {
       data={data}
       fields={fields}
       noRecordsMessage="There are no jobs to display"
-      noFilteredRecordsMessage="No jobs match your filters!"
+      noFilteredRecordsMessage="No jobs match your filters!" // this was from a template TODO
       />
       <button onClick={analyse}>Refresh</button>
     </div>

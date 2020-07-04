@@ -12,6 +12,6 @@ const Tfidf = require('../server/Tfidf')
 
 describe('top terms', ()=>{
     it('gets the top terms', async ()=>{
-        console.log( await Tfidf.update())
+        // console.log( await Tfidf.update())
     })
 })
