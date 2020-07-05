@@ -20,6 +20,7 @@ function App() {
   //the fields that will appear in the table.
   const fields = [
     { name: 'job_name', displayName: "Title", inputFilterable: true, sortable: true },
+    { name: 'link', displayName: "Link", inputFilterable: false, sortable: false },
     { name: 'company', displayName: "Company", inputFilterable: true, sortable: true },
     { name: 'location', displayName: "Location", inputFilterable: true, sortable: true },
     { name: 'keywords', displayName: "Keywords", inputFilterable: true, sortable: true },
@@ -28,16 +29,16 @@ function App() {
     
   ];
 
-  // let stats = 
-  // {"1": "listed",
-  // "2": "applying",
-  // "3": "applied",
-  // "4": "first contact",
-  // "5": "second contact",
-  // "6": "third contact",
-  // "12": "rejected",
-  // "14": "no contact",
-  // "20": "expired"}
+  let stats = 
+  {"1": "listed",
+  "2": "applying",
+  "3": "applied",
+  "4": "first contact",
+  "5": "second contact",
+  "6": "third contact",
+  "12": "rejected",
+  "14": "no contact",
+  "20": "expired"}
 
   //returns a job title that links to the job listing
   const Job = ({name}) =>{
@@ -52,8 +53,9 @@ function App() {
         // console.log(r)
         r.data.map((j)=>{
           let newstat = j.status[j.status.length - 1].type; /* relies on new status being pushed to the end */
-          j.job_name = <Job name={{name: j.name, url:j.url}}></Job>;
-          j.status = newstat;
+          j.job_name = j.name
+          j.link = <Job name={{name: "Link", url:j.url}}></Job>;
+          j.status = stats[newstat];
           j.keywords = j.keywords.map(k=>k.keyword).join(' ')
           j.status_submit = <StatusForm id={j._id} status_type={newstat} />;
         })
