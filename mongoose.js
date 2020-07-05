@@ -51,6 +51,14 @@ let Job = db.model("job", JobSchema)
 //     console.log(jobs.map(j=>j.location))
 // })
 
+// Job.find().then(jobs=>{
+//     console.log(jobs.map(j=>{
+//         return j.location
+//     }))
+// })
+// Job.deleteMany({location:''}).then(del=>{
+//     console.log(del)
+// })
 
 
 // let example2 = ({name: "thejob", location: 'nyc', url:'job.com', desc:'long', company:'apple', status: new StatusSchema});

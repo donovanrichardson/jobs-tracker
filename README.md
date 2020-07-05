@@ -41,7 +41,7 @@ Start the back end server from the directory `jobs-tracker`
 
  ### Master the job search
 
- #### Add a job using its Indeed URL
+ #### Add a job using its URL. (Currently supports LinkedIn and Indeed)
  ![Enter the job's URL using the text box on top, and click "Add" to add the job.](https://live.staticflickr.com/65535/50055749502_9e9779d7c6_o.gif)
 
  #### Sort columns

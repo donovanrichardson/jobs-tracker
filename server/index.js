@@ -17,7 +17,8 @@ app.use(cors())
 app.post('/import', (req, res) =>{
     // console.log(req.body.url)
     axios.get(req.body.url).then(p =>{
-        return Add.addJob(Import.grabIndeed(p.data,req.body.url))
+        // return p
+        return Add.addJob(Import.grabJob(p.data,req.body.url))
         // console.log()
         // res.send(p.data)
     }).then(job=>{

@@ -25,7 +25,7 @@ const grabDesc = (html, css) =>{
 const grabIndeed = (html, url) =>{
     return {
         name: grab(html, ".icl-u-xs-mb--xs"),
-        location: grab(html, ".jobsearch-InlineCompanyRating > div:nth-child(3)"),
+        location: grab(html, ".jobsearch-InlineCompanyRating > div:last-child"),
         url: url,
         desc: grabDesc(html, "#jobDescriptionText"),
         company: grab(html, "div.icl-u-lg-mr--sm:nth-child(1)")
@@ -33,4 +33,23 @@ const grabIndeed = (html, url) =>{
 
 }
 
-module.exports= {grabIndeed};
+const grabLinkedIn = (html, url) =>{
+    return {
+        name: grab(html, ".topcard__title"),
+        location: grab(html, "span.topcard__flavor:last-child"),
+        url: url,
+        desc: grabDesc(html, ".show-more-less-html__markup"),
+        company: grab(html, ".topcard__org-name-link")
+    };
+
+}
+
+const grabJob = (html, url) =>{
+    if (url.match(/indeed/)){
+        return grabIndeed(html,url)
+    } else{
+        return grabLinkedIn(html, url)
+    }
+}
+
+module.exports= {grabJob};
