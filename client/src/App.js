@@ -51,7 +51,7 @@ function App() {
 
       axios.get('http://localhost:9000/jobs').then(r=>{
         // console.log(r)
-        r.data.map((j)=>{
+        r.data.map((j)=>{ //this should probably be forEach
           let newstat = j.status[j.status.length - 1].type; /* relies on new status being pushed to the end */
           j.job_name = j.name
           j.link = <Job name={{name: "Link", url:j.url}}></Job>;

@@ -44,6 +44,7 @@ app.get('/jobs', (req, res) =>{
     })
 })
 
+//analyzes the description for each job using TFIDF in order to provide a job's keywords
 app.put('/analyse', (req, res) =>{
     return Tfidf.update().then(kwds=>{
         res.send(kwds)

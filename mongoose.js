@@ -57,7 +57,7 @@ let Job = db.model("job", JobSchema)
 //     }))
 // })
 // Job.deleteMany({location:''}).then(del=>{
-//     console.log(del)
+//     console.log(del.deletedCount)
 // })
 
 
