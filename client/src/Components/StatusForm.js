@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from "react";
 
+//allows user to update status
 function StatusForm(props){
 
     const [stat, setStat] = useState(props.status_type)

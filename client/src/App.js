@@ -69,6 +69,7 @@ function App() {
     }
 }
 
+//triggered by 'refresh' button. gets keywords
 const analyse = async(e) => {
   e.preventDefault() //prevents referesh
   try {
